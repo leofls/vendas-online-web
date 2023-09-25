@@ -31,6 +31,7 @@ export const LimitedContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 `;
 
 export const LogoImage = styled.img`
