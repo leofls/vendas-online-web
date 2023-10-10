@@ -1,12 +1,12 @@
+import { Space, Typography } from 'antd';
 import styled from 'styled-components';
 
+const { Text, Link } = Typography;
+
 export const BoxInput = styled.div`
+width: 100%;
 `;
 
-export const TitleInput = styled.h3`
-    font-size: 14px;
-    line-height: 21px;
-    font-weight: 500;
-    font-family: 'Poopins';
+export const TitleInput = styled(Text)`
     margin: 8px;
 `;
