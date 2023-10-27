@@ -1,7 +1,15 @@
 import { createContext, useContext, useState } from 'react';
 
+type NotificationType = 'success' | 'info' | 'warning' | 'error';
+
+interface NotificationProps {
+    message: string,
+    type: NotificationType,
+    description?: string,
+}
 interface GlobalData {
     accessToken?: string,
+    notification?: NotificationProps
 }
 interface GlobalContextProps {
     globalData: GlobalData;
@@ -31,8 +39,21 @@ export const useGlobalContext = () => {
             accessToken,
         })
     }
+    const setNotification = (message: string, type: NotificationType, description?: string) => {
+        setGlobalData({
+            ...globalData,
+            notification: {
+                message,
+                type,
+                description,
+            }
+        })
+    }
+
     return {
+        notification: globalData?.notification,
         accessToken: globalData?.accessToken,
         setAccessToken,
+        setNotification,
     }
 }

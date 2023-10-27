@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useState } from "react"
+import { useGlobalContext } from "./useGlobalContext";
 
 export const useRequests = () => {
     const [ loading, setLoading ] = useState(false);
+    const { setNotification } = useGlobalContext();
 
     const getRequest = async (url: string) => {
         setLoading(true);
@@ -13,7 +15,8 @@ export const useRequests = () => {
         }).then((result) => {
             return result.data;
         }).catch(()=>{
-            alert("Erro!")
+            setNotification("Senha Inválida!", 'error')
+            // alert("Erro!")
         });
     };
     const postRequest = async (url: string, body: any) => {
@@ -24,9 +27,12 @@ export const useRequests = () => {
             url: url,
             data: body,
         }).then((result) => {
+            setNotification("Entrando...", 'success')
+
             return result.data;
         }).catch(()=>{
-            alert("Erro!")
+            // alert("Erro!")
+            setNotification("Senha Inválida!", 'error')
         });
 
         setLoading(false);
