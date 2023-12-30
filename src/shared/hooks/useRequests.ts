@@ -22,7 +22,10 @@ export const useRequests = () => {
         // alert("Erro!")
       });
   };
-  const postRequest = async (url: string, body: unknown) => {
+  const postRequest = async <T>(
+    url: string,
+    body: unknown,
+  ): Promise<T | undefined> => {
     setLoading(true);
 
     const returnData = await connectionAPIPost<T>(url, body)
@@ -34,6 +37,7 @@ export const useRequests = () => {
       .catch((error: Error) => {
         // alert("Erro!")
         setNotification(error.message, "error");
+        return undefined;
       });
 
     setLoading(false);
